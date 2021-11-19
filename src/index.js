@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
+import Dashboard from './layouts/Customer/Dashboard';
+import AdminDashboard from './layouts/Admin/AdminDashboard';
+import Cars from './components/Customer/Cars';
+import Brands from './components/Customer/Brands';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
