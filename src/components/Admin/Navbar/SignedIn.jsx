@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -8,7 +8,25 @@ import Badge from '@mui/material/Badge';
 
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
+import AuthService from '../../../services/authService';
+import UserService from '../../../services/userService';
+import { useNavigate } from 'react-router';
 function SignedIn({ handleMobileMenuOpen, handleProfileMenuOpen, mobileMenuId, menuId }) {
+
+   let navigate = useNavigate();
+   const [currentUser, setCurrentUser] = useState({})
+   useEffect(() => {
+      let userService = new UserService();
+      userService.getCurrentUser(localStorage.getItem('token')).then(res => {
+         console.log(res.data.data);
+         setCurrentUser(res.data.data);
+         console.log(currentUser)
+      }).catch(err => {
+         console.log("err")
+         console.log(err)
+         navigate('auth')
+      })
+   }, [])
    return (
       <div>
          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -26,6 +44,7 @@ function SignedIn({ handleMobileMenuOpen, handleProfileMenuOpen, mobileMenuId, m
                   <NotificationsIcon />
                </Badge>
             </IconButton>
+
             <IconButton
                size="large"
                edge="end"
@@ -36,6 +55,7 @@ function SignedIn({ handleMobileMenuOpen, handleProfileMenuOpen, mobileMenuId, m
                color="inherit"
             >
                <AccountCircle />
+               <span style={{ fontSize: 20 }}>{currentUser.username} </span>
             </IconButton>
          </Box>
          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

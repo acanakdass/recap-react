@@ -7,7 +7,7 @@ export default class AuthService {
       return axios.post(this.baseUrl + "/login", credentials);
    }
 
-   add(employer) {
-      return axios.post(this.baseUrl + "/ad", employer);
+   getCurrentUser(token) {
+      return axios.get(this.baseUrl + "/getCurrentUser", token);
    }
 }

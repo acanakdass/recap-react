@@ -5,18 +5,17 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
 import { Divider } from '@mui/material';
-import BrandService from '../../services/brandService';
 import { useNavigate } from 'react-router';
-function Brands() {
-
-   const [brands, setBrands] = useState([])
+import ColorService from '../../../services/colorService';
+function Colors() {
+   const [colors, setColors] = useState([])
    const navigate = useNavigate();
 
    useEffect(() => {
-      let brandService = new BrandService();
-      brandService.getAll().then(res => {
+      let colorService = new ColorService();
+      colorService.getAll().then(res => {
          console.log(res.data.data)
-         setBrands(res.data.data)
+         setColors(res.data.data)
       })
    }, [])
 
@@ -29,7 +28,7 @@ function Brands() {
                aria-labelledby="nested-list-subheader"
                subheader={
                   <ListSubheader component="div" id="nested-list-subheader">
-                     Brands
+                     colors
                   </ListSubheader>
                }
             >
@@ -38,10 +37,10 @@ function Brands() {
                </ListItemButton>
                <Divider />
 
-               {brands.map((brand) => (
+               {colors.map((color) => (
                   <div>
-                     <ListItemButton onClick={() => navigate('/filter/brand/' + brand.id)}>
-                        <ListItemText primary={brand.name} />
+                     <ListItemButton onClick={() => navigate('/filter/color/' + color.id)}>
+                        <ListItemText primary={color.name} />
                      </ListItemButton>
                      <Divider />
                   </div>
@@ -52,4 +51,4 @@ function Brands() {
    )
 }
 
-export default Brands
+export default Colors

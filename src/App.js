@@ -17,7 +17,9 @@ function App() {
       <ToastContainer hideProgressBar autoClose={3500} />
       <Routes>
         <Route path='/' element={<Dashboard />}>
-          <Route path='cars' element={<Cars />} />
+          <Route path='/' element={<Cars />} />
+          <Route path='/filter/brand/:brandId' element={<Cars />} />
+          <Route path='/filter/color/:colorId' element={<Cars />} />
           <Route path='brands' element={<Brands />} />
         </Route>
         <Route path='/admin' element={<AdminDashboard />}>
