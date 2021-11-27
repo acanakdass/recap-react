@@ -2,10 +2,10 @@ import React from 'react'
 import { Outlet, Route, Routes } from 'react-router'
 import Cars from '../../components/Customer/Cars';
 import Brands from '../../components/Customer/Brands';
-import Navbar from '../../components/Admin/Navbar/Navbar';
 import { Container, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import Sidebar from '../../components/Customer/Sidebar';
+import Navbar from '../../components/Customer/Navbar';
 
 function Dashboard() {
    return (
